@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-md-4 register-employee">
+    <!-- form card register -->
+    <div class="card-body">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="inputName">First Name</label>
+          <input class="form-control" type="text" formControlName="firstname">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.firstname.errors?.required">
+            Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputName">Last Name</label>
+          <input class="form-control" type="text" formControlName="lastname">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.lastname.errors?.required">
+            Name is required.
+          </div>
+        </div>
+        <!--gender-->
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          
+             
+             <div class="custom-control custom-radio">
+                <input id="male" type="radio" class="custom-control-input" name="gender" formControlName="gender" value="male"
+                   checked>
+                <label class="custom-control-label" for="male">Male</label>
+             </div>
+       
+             <div class="custom-control custom-radio">
+                <input id="female" type="radio" class="custom-control-input" name="gender" formControlName="gender" value="female">
+                <label class="custom-control-label" for="female">Female</label>
+             </div>
+       
+          
+       </div>
+
+        <div class="form-group">
+          <label for="inputEmail3">Email</label>
+          <input class="form-control" type="text" formControlName="email">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+            Enter your email.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+            Enter valid email.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword3">City</label>
+          <select class="custom-select form-control" (change)="changecity($event.target.value)"
+            formControlName="city">
+            <option value="">Choose...</option>
+            <option *ngFor="let city of cities" value="{{city}}">{{city}}
+            </option>
+          </select>
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.city.errors?.required">
+            Choose City.
+          </div>
+        </div>
+
+        
+
+        <div class="form-group">
+          <button class="btn btn-success btn-lg btn-block" type="submit">Register</button>
+        </div>
+      </form>
+
+    </div>
+  </div><!-- form card register -->
+</div>
